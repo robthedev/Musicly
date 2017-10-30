@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,7 +28,8 @@ namespace Musicly.Controllers
         public ViewResult Index()
         {
             //Deffered execution
-            var customers = _context.Customers.ToList();
+            //eager loading -> brining over related model information (foreign key)
+            var customers = _context.Customers.Include(cust => cust.MembershipType).ToList();
 
             return View(customers);
         }
