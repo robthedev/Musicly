@@ -13,6 +13,8 @@ namespace Musicly.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+        //nullable propperty
+        public DateTime? BirthDate { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
         //Navigation property
         public MembershipType MembershipType { get; set; }
