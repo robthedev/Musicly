@@ -26,6 +26,7 @@ namespace Musicly.Models
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Song> Songs { get; set; }
+        public DbSet<Genre> Genres { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
