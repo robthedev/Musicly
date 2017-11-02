@@ -282,6 +282,10 @@
     <Compile Include="Migrations\201711020013193_CreatedSongsTable.Designer.cs">
       <DependentUpon>201711020013193_CreatedSongsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711020021265_PopulateGenreTable.cs" />
+    <Compile Include="Migrations\201711020021265_PopulateGenreTable.Designer.cs">
+      <DependentUpon>201711020021265_PopulateGenreTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -406,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711020013193_CreatedSongsTable.resx">
       <DependentUpon>201711020013193_CreatedSongsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020021265_PopulateGenreTable.resx">
+      <DependentUpon>201711020021265_PopulateGenreTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
