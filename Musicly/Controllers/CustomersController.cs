@@ -24,7 +24,12 @@ namespace Musicly.Controllers
             _context.Dispose();
         }
 
-        // GET: Customers
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        // GET: Customers -> /customers
         public ViewResult Index()
         {
             //Deffered execution
@@ -34,6 +39,8 @@ namespace Musicly.Controllers
             return View(customers);
         }
 
+
+        // /customer/details
         public ActionResult Details(int id)
         {
             var customer = _context.Customers.Include(cust => cust.MembershipType).SingleOrDefault(cust => cust.Id == id);
