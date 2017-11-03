@@ -290,6 +290,10 @@
     <Compile Include="Migrations\201711020033010_PopulateSongsTable.Designer.cs">
       <DependentUpon>201711020033010_PopulateSongsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711031850026_AddedReleaseDateAndNumberInStockToSongModel.cs" />
+    <Compile Include="Migrations\201711031850026_AddedReleaseDateAndNumberInStockToSongModel.Designer.cs">
+      <DependentUpon>201711031850026_AddedReleaseDateAndNumberInStockToSongModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -421,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711020033010_PopulateSongsTable.resx">
       <DependentUpon>201711020033010_PopulateSongsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711031850026_AddedReleaseDateAndNumberInStockToSongModel.resx">
+      <DependentUpon>201711031850026_AddedReleaseDateAndNumberInStockToSongModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
