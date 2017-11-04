@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Musicly.Models;
+using Musicly.ViewModels;
 
 namespace Musicly.Controllers
 {
@@ -26,7 +28,23 @@ namespace Musicly.Controllers
 
         public ActionResult New()
         {
-            return View();
+            //iniatialize the class and set the MembershipType property to the membershipTypes list
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
         }
 
         // GET: Customers -> /customers
@@ -50,6 +68,21 @@ namespace Musicly.Controllers
 
             return View(customer);
         }
-        
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new NewCustomerViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("New");
+        }
     }
 }

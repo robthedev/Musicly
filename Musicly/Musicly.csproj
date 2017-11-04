@@ -298,6 +298,10 @@
     <Compile Include="Migrations\201711031910172_PopulateSongDbWithDatesStock.Designer.cs">
       <DependentUpon>201711031910172_PopulateSongDbWithDatesStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711041938594_UpdateMembershipTypeNames.cs" />
+    <Compile Include="Migrations\201711041938594_UpdateMembershipTypeNames.Designer.cs">
+      <DependentUpon>201711041938594_UpdateMembershipTypeNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -308,6 +312,7 @@
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\NewCustomerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -376,7 +381,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -436,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711031910172_PopulateSongDbWithDatesStock.resx">
       <DependentUpon>201711031910172_PopulateSongDbWithDatesStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041938594_UpdateMembershipTypeNames.resx">
+      <DependentUpon>201711041938594_UpdateMembershipTypeNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
