@@ -12,7 +12,7 @@ namespace Musicly.Controllers
 {
     public class CustomersController : Controller
     {
-        //Create database context
+        //Save database context
         private ApplicationDbContext _context;
 
         public CustomersController()
@@ -30,18 +30,31 @@ namespace Musicly.Controllers
         {
             //iniatialize the class and set the MembershipType property to the membershipTypes list
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            if (customer.Id == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                //not secure
+                //TryUpdateModel(customerInDb);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
@@ -76,13 +89,13 @@ namespace Musicly.Controllers
             if (customer == null)
                 return HttpNotFound();
 
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
 
-            return View("New");
+            return View("CustomerForm", viewModel);
         }
     }
 }

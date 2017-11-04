@@ -10,7 +10,7 @@ namespace Musicly.Controllers
 {
     public class SongsController : Controller
     {
-        //Create database context
+        //Save database context
         private ApplicationDbContext _context;
 
         public SongsController()
