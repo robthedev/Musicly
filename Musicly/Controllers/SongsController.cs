@@ -51,9 +51,9 @@ namespace Musicly.Controllers
                 songInDb.NumberInStock = song.NumberInStock;
                 songInDb.Name = song.Name;
                 songInDb.GenreId = song.GenreId;
-
-                _context.SaveChanges();
             }
+
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Songs");
         }
@@ -76,6 +76,22 @@ namespace Musicly.Controllers
                 return HttpNotFound();
 
             return View(song);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var song = _context.Songs.SingleOrDefault(s => s.Id == id);
+
+            if (song == null)
+                return HttpNotFound();
+
+            var viewModel = new SongFormViewModel
+            {
+                Song = song,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("SongForm", viewModel);
         }
     }
 
