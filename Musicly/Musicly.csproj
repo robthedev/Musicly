@@ -302,8 +302,13 @@
     <Compile Include="Migrations\201711041938594_UpdateMembershipTypeNames.Designer.cs">
       <DependentUpon>201711041938594_UpdateMembershipTypeNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711090226555_MadeNameRequiredInMembershiptypes.cs" />
+    <Compile Include="Migrations\201711090226555_MadeNameRequiredInMembershiptypes.Designer.cs">
+      <DependentUpon>201711090226555_MadeNameRequiredInMembershiptypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdultMember.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -445,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711041938594_UpdateMembershipTypeNames.resx">
       <DependentUpon>201711041938594_UpdateMembershipTypeNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711090226555_MadeNameRequiredInMembershiptypes.resx">
+      <DependentUpon>201711090226555_MadeNameRequiredInMembershiptypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
