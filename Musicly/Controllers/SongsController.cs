@@ -31,6 +31,7 @@ namespace Musicly.Controllers
             var genres = _context.Genres.ToList();
             var viewModel = new SongFormViewModel
             {
+                Song = new Song(),
                 Genres = genres
             };
 
