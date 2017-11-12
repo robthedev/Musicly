@@ -10,30 +10,30 @@
 {
     @Html.ValidationSummary(true, "Please fix the errors")
     <div class="form-group">
-        @Html.LabelFor(m => m.Song.Name)
-        @Html.TextBoxFor(m => m.Song.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Song.Name)
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Song.ReleaseDate)
-        @Html.TextBoxFor(m => m.Song.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Song.ReleaseDate)
+        @Html.LabelFor(m => m.ReleaseDate)
+        @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ReleaseDate)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Song.NumberInStock)
-        @Html.TextBoxFor(m => m.Song.NumberInStock, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Song.NumberInStock)
+        @Html.LabelFor(m => m.NumberInStock)
+        @Html.TextBoxFor(m => m.NumberInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NumberInStock)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Song.GenreId)
-        @Html.DropDownListFor(m => m.Song.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Song.GenreId)
+        @Html.LabelFor(m => m.GenreId)
+        @Html.DropDownListFor(m => m.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GenreId)
     </div>
 
-    @Html.HiddenFor(m => m.Song.Id)
+    @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
 
     <button type="submit" class="btn btn-primary">Save</button>

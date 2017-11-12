@@ -31,7 +31,6 @@ namespace Musicly.Controllers
             var genres = _context.Genres.ToList();
             var viewModel = new SongFormViewModel
             {
-                Song = new Song(),
                 Genres = genres
             };
 
@@ -45,9 +44,8 @@ namespace Musicly.Controllers
             //validation
             if (!ModelState.IsValid)
             {
-                var viewModel = new SongFormViewModel
+                var viewModel = new SongFormViewModel(song)
                 {
-                    Song = new Song(),
                     Genres = _context.Genres.ToList()
                 };
 
@@ -98,9 +96,8 @@ namespace Musicly.Controllers
             if (song == null)
                 return HttpNotFound();
 
-            var viewModel = new SongFormViewModel
+            var viewModel = new SongFormViewModel(song)
             {
-                Song = song,
                 Genres = _context.Genres.ToList()
             };
 
