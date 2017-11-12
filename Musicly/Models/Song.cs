@@ -11,15 +11,16 @@ namespace Musicly.Models
         public int Id { get; set; }
 
         //Data annotations
-        [Required]
+        [Required(ErrorMessage = "Name field is required")]
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Release date field is required")]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Stock is required")]
+        [Range(1, 20, ErrorMessage = "Stock must be between 1 and 20")]
         [Display(Name = "Number in Stock")]
         public int NumberInStock { get; set; }
 

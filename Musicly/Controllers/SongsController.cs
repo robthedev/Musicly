@@ -39,8 +39,20 @@ namespace Musicly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Song song)
         {
+            //validation
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new SongFormViewModel
+                {
+                    Song = new Song(),
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("SongForm", viewModel);
+            }
             if (song.Id == 0)
                 _context.Songs.Add(song);
             else
