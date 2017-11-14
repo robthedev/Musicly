@@ -12,66 +12,66 @@ using AutoMapper;
 
 namespace Musicly.Controllers.Api
 {
-    public class CustomersController : ApiController
+    public class SongsController : ApiController
     {
         //create a db context
         private ApplicationDbContext _context;
 
-        public CustomersController()
+        public SongsController()
         {
             //initialize the db context within the constructor
             _context = new ApplicationDbContext();
         }
 
-        //GET /api/customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        //GET /api/songs
+        public IEnumerable<SongDto> GetSongs()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            return _context.Songs.ToList().Select(Mapper.Map<Song, SongDto>);
         }
 
-        //GET /api/customers/id
-        public IHttpActionResult GetCustomer(int id)
+        //GET /api/songss/id
+        public IHttpActionResult GetSong(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var song = _context.Songs.SingleOrDefault(s => s.Id == id);
 
-            if (customer == null)
+            if (song == null)
                 return NotFound();
 
-            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
+            return Ok(Mapper.Map<Song, SongDto>(song));
         }
 
-        //POST /api/customers
+        //POST /api/songs
         [HttpPost]
         //changes status code from 200 to 201
-        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
+        public IHttpActionResult CreateCustomer(SongDto songDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-                // could be userd if returning the dto  throw new HttpResponseException(HttpStatusCode.BadRequest);
+            // could be userd if returning the dto  throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
+            var song = Mapper.Map<SongDto, Song>(songDto);
 
-            _context.Customers.Add(customer);
+            _context.Songs.Add(song);
             _context.SaveChanges();
 
-            customerDto.Id = customer.Id;
+            songDto.Id = song.Id;
 
-            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
+            return Created(new Uri(Request.RequestUri + "/" + song.Id), songDto);
         }
 
         //PUT /api/customers/id
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
+        public void UpdateCustomer(int id, SongDto songDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var songInDb = _context.Songs.SingleOrDefault(s => s.Id == id);
 
-            if (customerInDb == null)
+            if (songInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            Mapper.Map(customerDto, customerInDb);
+            Mapper.Map(songDto, songInDb);
 
             //customerInDb.Name = customerDto.Name;
             //customerInDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
@@ -83,17 +83,17 @@ namespace Musicly.Controllers.Api
 
         //DELETE /api/customers/id
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public void DeleteSong(int id)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var songInDb = _context.Songs.SingleOrDefault(s => s.Id == id);
 
-            if (customerInDb == null)
+            if (songInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            _context.Customers.Remove(customerInDb);
+            _context.Songs.Remove(songInDb);
             _context.SaveChanges();
         }
     }
