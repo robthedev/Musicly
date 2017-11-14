@@ -42,10 +42,12 @@ namespace Musicly.Controllers.Api
 
         //POST /api/customers
         [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customerDto)
+        //changes status code from 200 to 201
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
-            if (!ModelState.IsValid) 
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            if (!ModelState.IsValid)
+                return BadRequest();
+                // could be userd if returning the dto  throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
 
@@ -54,7 +56,7 @@ namespace Musicly.Controllers.Api
 
             customerDto.Id = customer.Id;
 
-            return customerDto;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
 
         //PUT /api/customers/id

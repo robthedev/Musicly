@@ -18,7 +18,7 @@ namespace Musicly.DataTransferObjects
 
         //nullable propperty
         //to update teh label text
-        [AdultMember]
+        //[AdultMember]
         public DateTime? BirthDate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
