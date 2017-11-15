@@ -44,16 +44,22 @@ else
     
             $deleteBtn.on("click", function () {
                 var self = $(this);
-                if (confirm("Delete customer?")) {
-                    $.ajax({
-                        url: "/api/customers/" + $(this).attr("data-customer-id"),
-                        method: "DELETE",
-                        success: function () {
-                            self.parents("tr").remove();
-                        }
-                    });
-                }
+                bootbox.confirm("Delete customer?", function (result) {
+                    if (result) {
+                        deleteCustomer(self);
+                    }
+                })
             });
+
+            var deleteCustomer = function (btn) {
+                $.ajax({
+                    url: "/api/customers/" + btn.attr("data-customer-id"),
+                    method: "DELETE",
+                    success: function () {
+                        btn.parents("tr").remove();
+                    }
+                });
+            };
         });
     </script>
 }
