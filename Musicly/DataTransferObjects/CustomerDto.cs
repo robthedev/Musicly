@@ -26,5 +26,7 @@ namespace Musicly.DataTransferObjects
         //Foreign key
         //byte makes this implictly required
         public byte MembershipTypeId { get; set; }
+
+        public MembershipTypeDto MembershipType { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace Musicly.App_Start
             //Domain object to dto
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<Song, SongDto>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
 
             //dto to domain object
             Mapper.CreateMap<CustomerDto, Customer>()
@@ -23,6 +24,9 @@ namespace Musicly.App_Start
 
             Mapper.CreateMap<SongDto, Song>()
                 .ForMember(s => s.Id, opt => opt.Ignore());
+
+            //Mapper.CreateMap<MembershipTypeDto, MembershipType>()
+            //   .ForMember(m => m.Id, opt => opt.Ignore());
         }
     }
 }
