@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace Musicly.Controllers
 {
+    //if global authorize, you can override within the class
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
