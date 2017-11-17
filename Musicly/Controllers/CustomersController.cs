@@ -80,9 +80,12 @@ namespace Musicly.Controllers
         {
             //Deffered execution
             //eager loading -> brining over related model information (foreign key)
-            var customers = _context.Customers.Include(cust => cust.MembershipType).ToList();
+            //only need to grab data from db for server side rendering
+            //var customers = _context.Customers.Include(cust => cust.MembershipType).ToList();
 
-            return View(customers);
+            //return View(customers);
+
+            return View();
         }
 
 

@@ -6,12 +6,6 @@
 
 <h2>Customers</h2>
 
-@if (!Model.Any())
-{
-    <p>No customers yet</p>
-}
-else
-{
     <button class="btn btn-primary">@Html.ActionLink("Add Customer", "New", "Customers")</button>
     <table id="customers-table" class="table table-bordered table-hover">
         <thead>
@@ -21,7 +15,8 @@ else
             <th>Delete</th>
         </tr>
         </thead>
-        <tbody>
+        @*SSR - server side rendering*@
+        @*<tbody>
         @foreach (var customer in Model)
         {
             <tr>
@@ -32,15 +27,38 @@ else
                 </td>
             </tr>
         }
-        </tbody>
+        </tbody>*@ 
     </table>
-}
+
 
 @section scripts
 {
     <script>
         $(document).ready(function () {
-            $("#customers-table").DataTable();
+            $("#customers-table").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
             var $deleteBtn = $("#customers-table .js-delete");
     
