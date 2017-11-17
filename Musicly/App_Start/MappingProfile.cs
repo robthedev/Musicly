@@ -17,6 +17,7 @@ namespace Musicly.App_Start
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<Song, SongDto>();
             Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+            Mapper.CreateMap<Genre, GenreDto>();
 
             //dto to domain object
             Mapper.CreateMap<CustomerDto, Customer>()

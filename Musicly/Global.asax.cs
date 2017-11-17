@@ -15,6 +15,7 @@ namespace Musicly
     {
         protected void Application_Start()
         {
+            //add custom mapping
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
 

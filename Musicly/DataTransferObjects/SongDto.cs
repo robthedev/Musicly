@@ -28,5 +28,7 @@ namespace Musicly.DataTransferObjects
         //foreign key
         [Display(Name = "Genre")]
         public byte GenreId { get; set; }
+
+        public GenreDto Genre { get; set; }
     }
 }

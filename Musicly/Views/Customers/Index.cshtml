@@ -35,7 +35,7 @@
 {
     <script>
         $(document).ready(function () {
-            $("#customers-table").DataTable({
+        var table = $("#customers-table").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -59,24 +59,24 @@
                     }
                 ]
             });
-
-            var $deleteBtn = $("#customers-table .js-delete");
     
-            $deleteBtn.on("click", function () {
+            $("#customers-table").on("click", ".js-delete", function () {
                 var self = $(this);
+
                 bootbox.confirm("Delete customer?", function (result) {
                     if (result) {
-                        deleteCustomer(self);
+                        deleteItem(self, table);
                     }
                 })
             });
 
-            var deleteCustomer = function (btn) {
+            var deleteItem = function (btn, dataTable) {
                 $.ajax({
                     url: "/api/customers/" + btn.attr("data-customer-id"),
                     method: "DELETE",
                     success: function () {
-                        btn.parents("tr").remove();
+                        dataTable.row(btn.parents("tr")).remove().draw();
+                        
                     }
                 });
             };

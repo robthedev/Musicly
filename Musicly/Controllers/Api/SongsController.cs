@@ -1,6 +1,7 @@
 ﻿using Musicly.DataTransferObjects;
 using Musicly.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -24,9 +25,19 @@ namespace Musicly.Controllers.Api
         }
 
         //GET /api/songs
-        public IEnumerable<SongDto> GetSongs()
+        //public IEnumerable<SongDto> GetSongs()
+        //{
+        //    return _context.Songs.ToList().Select(Mapper.Map<Song, SongDto>);
+        //}
+
+        public IHttpActionResult GetSongs()
         {
-            return _context.Songs.ToList().Select(Mapper.Map<Song, SongDto>);
+            var songDtos = _context.Songs
+                .Include(s => s.Genre)
+                .ToList()
+                .Select(Mapper.Map<Song, SongDto>);
+
+            return Ok(songDtos);
         }
 
         //GET /api/songss/id
@@ -43,7 +54,7 @@ namespace Musicly.Controllers.Api
         //POST /api/songs
         [HttpPost]
         //changes status code from 200 to 201
-        public IHttpActionResult CreateCustomer(SongDto songDto)
+        public IHttpActionResult CreateSong(SongDto songDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -61,7 +72,7 @@ namespace Musicly.Controllers.Api
 
         //PUT /api/customers/id
         [HttpPut]
-        public void UpdateCustomer(int id, SongDto songDto)
+        public void UpdateSong(int id, SongDto songDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);

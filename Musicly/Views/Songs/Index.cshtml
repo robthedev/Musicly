@@ -6,21 +6,16 @@
 
 <h2>Songs</h2>
 
-@if (!Model.Any())
-{
-    <p>No songs yet</p>
-}
-else
-{
     <button class="btn btn-primary">@Html.ActionLink("Add Song", "New", "Songs")</button>
-    <table class="table table-bordered table-hover">
+    <table id="songs-table" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Song</th>
                 <th>Genre</th>
+                <th>Delete</th>
             </tr>
         </thead>
-        <tbody>
+        @*<tbody>
             @foreach (var song in Model)
             {
                 <tr>
@@ -28,6 +23,58 @@ else
                     <td>@song.Genre.Name</td>
                 </tr>
             }
-        </tbody>
+        </tbody>*@
     </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#songs-table").DataTable({
+                ajax: {
+                    url: "/api/songs",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, song) {
+                            return "<a href='/songs/edit/" + song.id + "'>" + song.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-song-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#songs-table").on("click", ".js-delete", function () {
+                var self = $(this);
+
+                bootbox.confirm("Delete song?", function (result) {
+                    if (result) {
+                        deleteItem(self, table);
+                    }
+                })
+            });
+
+            var deleteItem = function (btn, dataTable) {
+                $.ajax({
+                    url: "/api/songs/" + btn.attr("data-song-id"),
+                    method: "DELETE",
+                    success: function () {
+                        dataTable.row(btn.parents("tr")).remove().draw();
+
+                    }
+                });
+            };
+        });
+    </script>
 }

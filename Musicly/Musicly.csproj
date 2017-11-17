@@ -255,6 +255,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="DataTransferObjects\CustomerDto.cs" />
+    <Compile Include="DataTransferObjects\GenreDto.cs" />
     <Compile Include="DataTransferObjects\MembershipTypeDto.cs" />
     <Compile Include="DataTransferObjects\SongDto.cs" />
     <Compile Include="Global.asax.cs">
