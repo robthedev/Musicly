@@ -25,6 +25,26 @@ namespace Musicly.Controllers
             _context.Dispose();
         }
 
+        // GET: Songs  -- for ssr
+        //public ViewResult Index()
+        //{
+        //    //Deffered execution
+        //    //eager loading -> brining over related model information (foreign key)
+        //    var songs = _context.Songs.Include(s => s.Genre).ToList();
+
+
+
+        //    return View(songs);
+        //}
+        //GET: songs ccr
+        public ViewResult Index()
+        {
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("Index");
+
+            return View("ReadOnlyList");
+        }
+
         public ActionResult New()
         {
             //iniatialize the class and set the genre property to the genres list
@@ -67,26 +87,6 @@ namespace Musicly.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Songs");
-        }
-
-        // GET: Songs  -- for ssr
-        //public ViewResult Index()
-        //{
-        //    //Deffered execution
-        //    //eager loading -> brining over related model information (foreign key)
-        //    var songs = _context.Songs.Include(s => s.Genre).ToList();
-
-
-
-        //    return View(songs);
-        //}
-        //GET: songs ccr
-        public ViewResult Index()
-        {
-            if (User.IsInRole("canManageMovies"))
-                return View("Index");
-            
-           return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)

@@ -26,6 +26,25 @@ namespace Musicly.Controllers
             _context.Dispose();
         }
 
+        // GET: Customers -> /customers -- ssr
+        //public ViewResult Index()
+        //{
+        //    //Deffered execution
+        //    //eager loading -> brining over related model information (foreign key)
+        //    //only need to grab data from db for server side rendering
+        //    //var customers = _context.Customers.Include(cust => cust.MembershipType).ToList();
+
+        //    //return View(customers);
+
+        //    return View();
+        //}
+
+        public ViewResult Index()
+        {
+            return View();
+        }
+
+
         public ActionResult New()
         {
             //iniatialize the class and set the MembershipType property to the membershipTypes list
@@ -74,25 +93,6 @@ namespace Musicly.Controllers
 
             return RedirectToAction("Index", "Customers");
         }
-
-        // GET: Customers -> /customers -- ssr
-        //public ViewResult Index()
-        //{
-        //    //Deffered execution
-        //    //eager loading -> brining over related model information (foreign key)
-        //    //only need to grab data from db for server side rendering
-        //    //var customers = _context.Customers.Include(cust => cust.MembershipType).ToList();
-
-        //    //return View(customers);
-
-        //    return View();
-        //}
-
-        public ViewResult Index()
-        {
-            return View();
-        }
-
 
         // /customer/details
         public ActionResult Details(int id)
