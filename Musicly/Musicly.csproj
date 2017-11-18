@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44352</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -333,6 +333,10 @@
     <Compile Include="Migrations\201711181952421_SeedUsers.Designer.cs">
       <DependentUpon>201711181952421_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711182105177_AddedPinCodeToAppUser.cs" />
+    <Compile Include="Migrations\201711182105177_AddedPinCodeToAppUser.Designer.cs">
+      <DependentUpon>201711182105177_AddedPinCodeToAppUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdultMember.cs" />
@@ -341,6 +345,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -660,6 +665,9 @@
     <EmbeddedResource Include="Migrations\201711181952421_SeedUsers.resx">
       <DependentUpon>201711181952421_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711182105177_AddedPinCodeToAppUser.resx">
+      <DependentUpon>201711182105177_AddedPinCodeToAppUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -679,7 +687,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58693</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58693/</IISUrl>
+          <IISUrl>https://localhost:44352/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
