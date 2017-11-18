@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Musicly.Models.Song>
+@{
+    ViewBag.Title = "SongsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Songs List</h2>
+
+
+<table id="songs-table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Song</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    @*<tbody>
+            @foreach (var song in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(song.Name, "Edit", "Songs", new { id = song.Id }, null)</td>
+                    <td>@song.Genre.Name</td>
+                </tr>
+            }
+        </tbody>*@
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#songs-table").DataTable({
+                ajax: {
+                    url: "/api/songs",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+            
+        });
+    </script>
+}

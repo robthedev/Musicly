@@ -69,14 +69,24 @@ namespace Musicly.Controllers
             return RedirectToAction("Index", "Songs");
         }
 
-        // GET: Songs
+        // GET: Songs  -- for ssr
+        //public ViewResult Index()
+        //{
+        //    //Deffered execution
+        //    //eager loading -> brining over related model information (foreign key)
+        //    var songs = _context.Songs.Include(s => s.Genre).ToList();
+
+
+
+        //    return View(songs);
+        //}
+        //GET: songs ccr
         public ViewResult Index()
         {
-            //Deffered execution
-            //eager loading -> brining over related model information (foreign key)
-            var songs = _context.Songs.Include(s => s.Genre).ToList();
-
-            return View(songs);
+            if (User.IsInRole("canManageMovies"))
+                return View("Index");
+            
+           return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
