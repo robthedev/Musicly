@@ -8,5 +8,6 @@ namespace Musicly.Models
     public static class RoleName
     {
         public const string CanManageMovies = "canManageMovies";
+        public const string CanManageSongs = "CanManageSongs";
     }
 }

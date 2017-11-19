@@ -340,6 +340,10 @@
     <Compile Include="Migrations\201711182105177_AddedPinCodeToAppUser.Designer.cs">
       <DependentUpon>201711182105177_AddedPinCodeToAppUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711191856025_CreatedSongsAdmin.cs" />
+    <Compile Include="Migrations\201711191856025_CreatedSongsAdmin.Designer.cs">
+      <DependentUpon>201711191856025_CreatedSongsAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdultMember.cs" />
@@ -670,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711182105177_AddedPinCodeToAppUser.resx">
       <DependentUpon>201711182105177_AddedPinCodeToAppUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711191856025_CreatedSongsAdmin.resx">
+      <DependentUpon>201711191856025_CreatedSongsAdmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

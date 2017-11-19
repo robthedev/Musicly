@@ -54,6 +54,7 @@ namespace Musicly.Controllers.Api
         //POST /api/songs
         [HttpPost]
         //changes status code from 200 to 201
+        [Authorize(Roles = RoleName.CanManageSongs)]
         public IHttpActionResult CreateSong(SongDto songDto)
         {
             if (!ModelState.IsValid)
@@ -72,6 +73,7 @@ namespace Musicly.Controllers.Api
 
         //PUT /api/customers/id
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageSongs)]
         public void UpdateSong(int id, SongDto songDto)
         {
             if (!ModelState.IsValid)
@@ -94,6 +96,7 @@ namespace Musicly.Controllers.Api
 
         //DELETE /api/customers/id
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageSongs)]
         public void DeleteSong(int id)
         {
             if (!ModelState.IsValid)

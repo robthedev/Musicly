@@ -155,8 +155,8 @@ namespace Musicly.Controllers
                     //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     //var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-                    //await roleManager.CreateAsync(new IdentityRole("canManageMovies"));
-                    //await UserManager.AddToRoleAsync(user.Id, "canManageMovies");
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageSongs"));
+                    //await UserManager.AddToRoleAsync(user.Id, "CanManageSongs");
 
 
 
@@ -382,7 +382,11 @@ namespace Musicly.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    PinCode = model.PinCode
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

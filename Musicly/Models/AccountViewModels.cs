@@ -8,6 +8,9 @@ namespace Musicly.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        public string PinCode { get; set; }
     }
 
     public class ExternalLoginListViewModel

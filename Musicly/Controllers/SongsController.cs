@@ -39,12 +39,13 @@ namespace Musicly.Controllers
         //GET: songs ccr
         public ViewResult Index()
         {
-            if (User.IsInRole(RoleName.CanManageMovies))
+            if (User.IsInRole(RoleName.CanManageSongs))
                 return View("Index");
 
             return View("ReadOnlyList");
         }
 
+        [Authorize(Roles = RoleName.CanManageSongs)]
         public ActionResult New()
         {
             //iniatialize the class and set the genre property to the genres list
@@ -88,7 +89,7 @@ namespace Musicly.Controllers
 
             return RedirectToAction("Index", "Songs");
         }
-
+        
         public ActionResult Details(int id)
         {
             var song = _context.Songs.Include(s => s.Genre).SingleOrDefault(s => s.Id == id);
@@ -99,6 +100,7 @@ namespace Musicly.Controllers
             return View(song);
         }
 
+        [Authorize(Roles = RoleName.CanManageSongs)]
         public ActionResult Edit(int id)
         {
             var song = _context.Songs.SingleOrDefault(s => s.Id == id);
