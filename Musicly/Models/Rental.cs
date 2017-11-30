@@ -15,6 +15,7 @@ namespace Musicly.Models
         public Song Song { get; set; }
 
         public int CustomerId { get; set; }
+        public int SongId { get; set; }
         public List<int> SongIds { get; set; }
     }
 }

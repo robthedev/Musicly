@@ -363,6 +363,14 @@
     <Compile Include="Migrations\201711191856025_CreatedSongsAdmin.Designer.cs">
       <DependentUpon>201711191856025_CreatedSongsAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711302040465_AddedRentalModel.cs" />
+    <Compile Include="Migrations\201711302040465_AddedRentalModel.Designer.cs">
+      <DependentUpon>201711302040465_AddedRentalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711302049256_AddedRentalTable.cs" />
+    <Compile Include="Migrations\201711302049256_AddedRentalTable.Designer.cs">
+      <DependentUpon>201711302049256_AddedRentalTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdultMember.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -708,6 +716,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711191856025_CreatedSongsAdmin.resx">
       <DependentUpon>201711191856025_CreatedSongsAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711302040465_AddedRentalModel.resx">
+      <DependentUpon>201711302040465_AddedRentalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711302049256_AddedRentalTable.resx">
+      <DependentUpon>201711302049256_AddedRentalTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
