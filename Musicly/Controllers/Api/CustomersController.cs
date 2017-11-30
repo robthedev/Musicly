@@ -30,6 +30,7 @@ namespace Musicly.Controllers.Api
         //    return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
         //}
 
+        ///api/customers
         public IHttpActionResult GetCustomers()
         {
             var customerDtos = _context.Customers

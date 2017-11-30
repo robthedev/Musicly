@@ -30,6 +30,7 @@ namespace Musicly.Controllers.Api
         //    return _context.Songs.ToList().Select(Mapper.Map<Song, SongDto>);
         //}
 
+        //api/songs
         public IHttpActionResult GetSongs()
         {
             var songDtos = _context.Songs
@@ -40,7 +41,7 @@ namespace Musicly.Controllers.Api
             return Ok(songDtos);
         }
 
-        //GET /api/songss/id
+        //GET /api/songs/id
         public IHttpActionResult GetSong(int id)
         {
             var song = _context.Songs.SingleOrDefault(s => s.Id == id);

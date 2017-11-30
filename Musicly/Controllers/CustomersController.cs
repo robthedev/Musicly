@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Musicly.Models;
 using Musicly.ViewModels;
+using System.Runtime.Caching;
 
 namespace Musicly.Controllers
 {
@@ -41,6 +42,14 @@ namespace Musicly.Controllers
 
         public ViewResult Index()
         {
+            ////data caching
+            //if (MemoryCache.Default["Genres"] == null)
+            //{
+            //    MemoryCache.Default["Genres"] = _context.Genres.ToList();
+            //}
+
+            //var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
+
             return View();
         }
 
