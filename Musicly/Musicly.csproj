@@ -375,6 +375,10 @@
     <Compile Include="Migrations\201711302057548_UpdatedRentalModel.Designer.cs">
       <DependentUpon>201711302057548_UpdatedRentalModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711302306193_AddedNumberAvailToSongModel.cs" />
+    <Compile Include="Migrations\201711302306193_AddedNumberAvailToSongModel.Designer.cs">
+      <DependentUpon>201711302306193_AddedNumberAvailToSongModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdultMember.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -729,6 +733,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711302057548_UpdatedRentalModel.resx">
       <DependentUpon>201711302057548_UpdatedRentalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711302306193_AddedNumberAvailToSongModel.resx">
+      <DependentUpon>201711302306193_AddedNumberAvailToSongModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

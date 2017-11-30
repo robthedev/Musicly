@@ -24,6 +24,8 @@ namespace Musicly.Models
         [Display(Name = "Number in Stock")]
         public int NumberInStock { get; set; }
 
+        public int NumberAvailable { get; set; }
+
         //navigation property
         public Genre Genre { get; set; }
 
