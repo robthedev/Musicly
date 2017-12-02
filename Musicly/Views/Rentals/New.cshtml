@@ -94,10 +94,10 @@
                     data: _viewModel
                 })
                 .done(function () {
-                    console.log('good');
+                    toastr.success("Rentals successful!")
                  })
                 .fail(function () {
-                    console.log('bad');
+                    toastr.error("Error, unexpected result!")
                 });
             });
 
