@@ -25,6 +25,8 @@ namespace Musicly.DataTransferObjects
         [Display(Name = "Number in Stock")]
         public int NumberInStock { get; set; }
 
+        public int NumberAvailable { get; set; }
+
         //foreign key
         [Display(Name = "Genre")]
         public byte GenreId { get; set; }

@@ -15,10 +15,17 @@
 
     <div class="form-group">
         <label>Song</label>
-        <input id="song" class="form-control" type="text" value="" />
+        <div class="tt-container">
+            <input id="song" class="form-control" type="text" value="" />
+        </div>
     </div>
 
-    <ul id="songs" class="list-group"></ul>
+    <div class="row">
+        <div class="col md-4">
+            <ul id="songs" class="list-group"></ul>
+        </div>
+    </div>
+    
 
     <button class="btn btn-primary">Submit</button>
 </form>
@@ -69,7 +76,7 @@
                 display: 'name',
                 source: songs
                 }).on("typeahead:select", function (e, song) {
-                    $("#songs").append("<li>" + song.name + "</li>");
+                    $("#songs").append("<li class='list-group-item'>" + song.name + "</li>");
 
                     $("#song").typeahead("val", "");
 

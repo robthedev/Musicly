@@ -30,20 +30,36 @@ namespace Musicly.Controllers.Api
         //    return _context.Songs.ToList().Select(Mapper.Map<Song, SongDto>);
         //}
 
-        //api/songs
-        public IHttpActionResult GetSongs(string query = null)
+        public IEnumerable<SongDto> GetSongs(string query = null)
         {
-            var songsquery = _context.Songs.Include(s => s.Genre);
+            var songsQuery = _context.Songs
+                .Include(s => s.Genre)
+                .Where(s => s.NumberAvailable > 0);
 
             if (!String.IsNullOrWhiteSpace(query))
-                songsquery = songsquery.Where(s => s.Name.Contains(query));
+                songsQuery = songsQuery.Where(s => s.Name.Contains(query));
 
-            var songDtos = songsquery
+            return songsQuery
                 .ToList()
                 .Select(Mapper.Map<Song, SongDto>);
-
-            return Ok(songDtos);
         }
+
+        //api/songs
+        //public IHttpActionResult GetSongs(string query = null)
+        //{
+        //    var songsQuery = _context.Songs
+        //        .Include(s => s.Genre)
+        //        .Where(s => s.NumberAvailable > 0);
+
+        //    if (!String.IsNullOrWhiteSpace(query))
+        //        songsQuery = songsQuery.Where(s => s.Name.Contains(query));
+
+        //    var songDtos = songsQuery
+        //        .ToList()
+        //        .Select(Mapper.Map<Song, SongDto>);
+
+        //    return Ok(songDtos);
+        //}
 
         //GET /api/songs/id
         public IHttpActionResult GetSong(int id)
