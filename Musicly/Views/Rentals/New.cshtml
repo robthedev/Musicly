@@ -9,14 +9,16 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customers" class="form-control" type="text" value="" />
+            <input id="customer" class="form-control" type="text" value="" />
         </div>
     </div>
 
     <div class="form-group">
         <label>Song</label>
-        <input type="text" value="" class="form-control" />
+        <input id="song" class="form-control" type="text" value="" />
     </div>
+
+    <ul id="songs" class="list-group"></ul>
 
     <button class="btn btn-primary">Submit</button>
 </form>
@@ -26,6 +28,10 @@
     
     <script>
         $(document).ready(function () {
+
+            var _viewModel = {
+                songIds: []
+            };
 
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -37,15 +43,38 @@
                 }
             });
 
-            $('#customers').typeahead({
+            var songs = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/songs?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#customer').typeahead({
                 minLength: 3,
                 highlight: true
             }, {
                 name: 'customers',
                 display: 'name',
                 source: customers
-            });
+                });
 
+            $('#song').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'songs',
+                display: 'name',
+                source: songs
+                }).on("typeahead:select", function (e, song) {
+                    $("#songs").append("<li>" + song.name + "</li>");
+
+                    $("#song").typeahead("val", "");
+
+                    _viewModel.songIds.push(song.id);
+                });
         });
         
     </script>

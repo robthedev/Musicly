@@ -31,10 +31,14 @@ namespace Musicly.Controllers.Api
         //}
 
         //api/songs
-        public IHttpActionResult GetSongs()
+        public IHttpActionResult GetSongs(string query = null)
         {
-            var songDtos = _context.Songs
-                .Include(s => s.Genre)
+            var songsquery = _context.Songs.Include(s => s.Genre);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                songsquery = songsquery.Where(s => s.Name.Contains(query));
+
+            var songDtos = songsquery
                 .ToList()
                 .Select(Mapper.Map<Song, SongDto>);
 
