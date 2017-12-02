@@ -9,14 +9,14 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" class="form-control" type="text" value="" />
+            <input required data-rule-validateCustomer="true" id="customer" name="customer" class="form-control" type="text" value="" />
         </div>
     </div>
 
     <div class="form-group">
         <label>Song</label>
         <div class="tt-container">
-            <input id="song" class="form-control" type="text" value="" />
+            <input data-rule-validateSong="true" id="song" name="song" class="form-control" type="text" value="" />
         </div>
     </div>
 
@@ -32,7 +32,8 @@
 
 @section scripts
 {
-    
+    @Scripts.Render("~/bundles/jqueryval");
+
     <script>
         $(document).ready(function () {
 
@@ -85,22 +86,44 @@
                     _viewModel.songIds.push(song.id);
                 });
 
-            $("#newRental").submit(function (e) {
-                e.preventDefault();
+            $.validator.addMethod("validateCustomer", function () {
+                return _viewModel.customerId && _viewModel.customerId !== 0;
+            }, "Select a valid customer");
 
-                $.ajax({
-                    url: "/api/newRentals",
-                    method: "post",
-                    data: _viewModel
-                })
-                .done(function () {
-                    toastr.success("Rentals successful!")
-                 })
-                .fail(function () {
-                    toastr.error("Error, unexpected result!")
-                });
+            $.validator.addMethod("validateSong", function () {
+                return  _viewModel.songIds.length > 0;
+            }, "Select a valid song");
+
+            var validator = $("#newRental").validate({
+                submitHandler: function () {
+                    //e.preventDefault();
+
+                    $.ajax({
+                        url: "/api/newRentals",
+                        method: "post",
+                        data: _viewModel
+                    })
+                    .done(function () {
+                        toastr.success("Rentals successful!");
+
+                        $("#customer").typeahead("val", "");
+                        $("#song").typeahead("val", "");
+                        $("#songs").empty();
+
+                        _viewModel = {
+                            songIds: []
+                        };
+
+                        validator.resetFrom();
+                    })
+                    .fail(function () {
+                        toastr.error("Error, unexpected result!");
+                    });
+
+                    return false;
+                }
             });
-
+            
         });
         
     </script>
