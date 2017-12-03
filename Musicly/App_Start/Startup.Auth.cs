@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Musicly.Models;
+using System.Configuration;
 
 //[assembly: OwinStartup(typeof(Musicly.Startup))]
 
@@ -57,8 +58,8 @@ namespace Musicly
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-                appId: "1369525139824111",
-                appSecret: "1ba921352d9dd0e937c440470c6bd99f");
+                appId: ConfigurationManager.AppSettings["FacebookAppId"],
+                appSecret: ConfigurationManager.AppSettings["FacebookAppSecret"]);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
